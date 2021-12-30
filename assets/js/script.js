@@ -4,4 +4,6 @@ $(".text").on("click", function() {
     var textInput = $("<textArea>").addClass("col-8").addClass("format").val(text);
 
     $(this).replaceWith(textInput);
+
+    textInput.trigger("focus");
 })
