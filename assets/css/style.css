@@ -80,3 +80,14 @@ textarea{
   border-left: 2px ridge rgba(22, 104, 211, 0.8);
   border-radius: 10px;
 }
+
+.format {
+  display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    white-space: pre-wrap;
+}
