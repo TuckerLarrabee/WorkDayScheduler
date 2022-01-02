@@ -13,6 +13,7 @@ var tasks = {
 var textBlock = $(".description");
 
 var currentHour = moment().hour()
+// console.log(currentHour)
 
 var time = moment().format("[Today's date is] dddd, MMMM Do")
 
@@ -52,8 +53,6 @@ $(".row").on("click", "textarea", function(){
     $(this).replaceWith(textInput);
 
     textInput.trigger("focus");
-    // console.log(textInput);
-    // console.log(text);
 })
 
 $(".row").on("blur", "input", function() {
@@ -62,26 +61,40 @@ $(".row").on("blur", "input", function() {
     
     //recreate textarea element
     var taskArea = $("<textarea>").addClass("col-9").addClass("description").text(text);
-    console.log(taskArea);
-    console.log(text);
+    // console.log(taskArea);
+    // console.log(text);
 
     //replace input with textarea element
     $(this).replaceWith(taskArea);
 
-    var dateReCheck = ($(taskArea).siblings()[0].textContent.trim());
-    var newDateReCheck = dateReCheck.slice(0, -2)
+    var timeReCheck = ($(taskArea).siblings()[0].textContent.trim());
+    console.log(timeReCheck)
+    if (timeReCheck.includes("PM")) {
+
+        var newDateReCheck = timeReCheck.slice(0, -2)
+        var check = parseInt(newDateReCheck)
+        var timeCheck = check + 12;
+
+        if (timeCheck < currentHour) {
+            $(taskArea).addClass("past");
+        } else if (timeCheck == currentHour) {
+            $(taskArea).addClass("present");
+        } else {
+            $(taskArea).addClass("future");
+        }  
+    }
+    var newDateReCheck = timeReCheck.slice(0, -2)
     
     var check = parseInt(newDateReCheck);
     console.log(check);
     
     if (check < currentHour) {
         $(taskArea).addClass("past");
-    } else if (hour == currentHour) {
+    } else if (check == currentHour) {
         $(taskArea).addClass("present");
     } else {
         $(taskArea).addClass("future");
-    }
-    
+    }  
 })
 
 
