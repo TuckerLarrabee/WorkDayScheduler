@@ -7,8 +7,12 @@ var tasks = {
     14: [],
     15: [],
     16: [],
-    17: []
-};
+    17: [],
+}
+
+// var mapOne = new Map();
+
+
 
 var textBlock = $(".description");
 
@@ -104,10 +108,23 @@ $(".saveBtn").on("click", function () {
     var taskSave = ($(this).siblings()[1].textContent.trim());
     console.log(taskSave);
 
+    var idSave = ($(this).siblings()[0].id);
+    console.log(idSave);
+
+    $.each(tasks, function (key, array) {
+        console.log(key);
+        if (key == idSave) {
+            array.push(taskSave)
+            console.log(tasks);
+        }        
+});
+
+    
+
     //after we grab the text from the same row, push that into an array
 
 
-    localStorage.setItem("tasks", JSON.stringify(tasks))
+    saveTasks();
 
 
     // for (var i = 0; i < textBlock.length; i++) {
