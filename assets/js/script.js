@@ -1,4 +1,14 @@
-var tasks = {};
+var tasks = {
+    9: [],
+    10: [],
+    11: [],
+    12: [],
+    13: [],
+    14: [],
+    15: [],
+    16: [],
+    17: []
+};
 
 var textBlock = $(".description");
 
@@ -9,9 +19,10 @@ var time = moment().format("[Today's date is] dddd, MMMM Do")
 var timeDisplay = $("#currentDay");
 timeDisplay.text(time);
 
+var timeBlock = $(".hour")
+
+
 var dateCheck = function () {
-    //get date from each row
-    var timeBlock = $(".hour");
     // console.log(timeBlock)
 
     for(var i = 0; i < timeBlock.length; i++) {
@@ -27,9 +38,53 @@ var dateCheck = function () {
     }
 }
 
+
+
 var saveTasks = function () {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   };
+
+$(".row").on("click", "textarea", function(){
+    var text = $(this).text().trim();
+  
+    var textInput = $("<input>").addClass("col-9").addClass("description").val(text);
+  
+    $(this).replaceWith(textInput);
+
+    textInput.trigger("focus");
+    // console.log(textInput);
+    // console.log(text);
+})
+
+$(".row").on("blur", "input", function() {
+    //get the input's current value/text
+    var text =$(this).val().trim();
+    
+    //recreate textarea element
+    var taskArea = $("<textarea>").addClass("col-9").addClass("description").text(text);
+    console.log(taskArea);
+    console.log(text);
+
+    //replace input with textarea element
+    $(this).replaceWith(taskArea);
+
+    var dateReCheck = ($(taskArea).siblings()[0].textContent.trim());
+    var newDateReCheck = dateReCheck.slice(0, -2)
+    
+    var check = parseInt(newDateReCheck);
+    console.log(check);
+    
+    if (check < currentHour) {
+        $(taskArea).addClass("past");
+    } else if (hour == currentHour) {
+        $(taskArea).addClass("present");
+    } else {
+        $(taskArea).addClass("future");
+    }
+    
+})
+
+
 
 $(".saveBtn").on("click", function () {
     //if we click the save button, grab the text from the same row
@@ -37,8 +92,7 @@ $(".saveBtn").on("click", function () {
     console.log(taskSave);
 
     //after we grab the text from the same row, push that into an array
-    tasks.push(taskSave)
-    console.log(tasks)
+
 
     localStorage.setItem("tasks", JSON.stringify(tasks))
 
