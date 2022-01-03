@@ -118,28 +118,8 @@ $(".saveBtn").on("click", function () {
             console.log(tasks);
         }        
 });
-
-    
-
-    //after we grab the text from the same row, push that into an array
-
-
     saveTasks();
 
-
-    // for (var i = 0; i < textBlock.length; i++) {
-    //     var test = $(textBlock[i]).val().trim();
-    //     console.log(test)
-    // }
-
-    // localStorage.setItem("tasks", JSON.stringify(tasks))
-
-
-
-    // for(var i = 0; i < textBlock.length; i++) {
-    //     var data = ($(textBlock[i]).val());
-    //     console.log(data);
-    // }
 })
 
 
