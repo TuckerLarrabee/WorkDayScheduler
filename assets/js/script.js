@@ -10,10 +10,14 @@ var tasks = {
     17: [],
 }
 
-// for (var i = 0; i < 10; i++) {
+console.log(Object.getOwnPropertyNames(tasks))
+    //  if the tasks object has a value in any of the properties (9-17)
+    // tasksObjectValue = (Object.values(tasks))
+    // console.log(tasksObjectValue)
+
+// console.log(Object.getOwnPropertyNames(tasks))
 
 // var mapOne = new Map();
-
 
 
 var textBlock = $(".description");
@@ -49,6 +53,11 @@ var loadTasks = function () {
     tasks = JSON.parse(localStorage.getItem("tasks"))
     console.log(tasks);
 
+    taskValue = (Object.values(tasks))
+        console.log(taskValue)
+
+   
+
     if (!tasks) {
         tasks = {
             9: [],
@@ -64,25 +73,28 @@ var loadTasks = function () {
         localStorage.setItem("tasks", (tasks));
     } 
 
-    //For loop through all object properties (9-17)
-    for (var i = 0; i < tasks.length; i ++) {
-         // if the tasks object has a value in any of the properties (9-17)
-        if (tasks.key) {
-            //grab the property value from tasks object
-
-            //find all span elements by their id (9-17)
-                var testing = $("span");
-                console.log(testing)
-                for(var i = 0; i<testing.length; i++) {
-
-                var testingTwo = testing[i].id;
-                console.log(testingTwo);
-                //if the tasks.property matches to the span id, insert tasks.property into sibling textarea 
+    // For loop through all object properties (9-17)
+for (var i = 0; i < tasks.length; i++) {
+        //  if the tasks object has a value in any of the properties (9-17)
+        tasksObjectValue = (Object.values(tasks[i]))
+        console.log(tasksObjectValue)
+        if (tasksObjectValue) {
+            // create jQuery object of all span elements
+            var allSpan = $("span");
+            console.log(allSpan)
+            // loop through all span elements and grab their Ids which corresponds to the time
+            for(var i = 0; i<allSpan.length; i++) {
+                //object.getOwnPropertyNames will retrieve the property (9-17) from the tasks object
+            console.log(Object.getOwnPropertyNames(tasks[i]))
+            var testingTwo = allSpan[i].id;
+            console.log(testingTwo);
+            // if the tasks.property matches to the span id, insert tasksObjectValue into sibling textarea
         }
 }
-
-    }
 }
+}
+    
+
 
 
     // var taskArea = $("<textarea>").addClass("col-9").addClass("description").text();
