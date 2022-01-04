@@ -43,7 +43,25 @@ var dateCheck = function () {
     }
 }
 
+var loadTasks = function () {
+    tasks = JSON.parse(localStorage.getItem("tasks"))
+    console.log(tasks);
 
+    if (!tasks) {
+        tasks = {
+            9: [],
+            10: [],
+            11: [],
+            12: [],
+            13: [],
+            14: [],
+            15: [],
+            16: [],
+            17: [],
+}
+localStorage.setItem("tasks", (tasks));
+}
+}
 
 var saveTasks = function () {
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -65,8 +83,8 @@ $(".row").on("blur", "input", function() {
     
     //recreate textarea element
     var taskArea = $("<textarea>").addClass("col-9").addClass("description").text(text);
-    // console.log(taskArea);
-    // console.log(text);
+    console.log(taskArea);
+    console.log(text);
 
     //replace input with textarea element
     $(this).replaceWith(taskArea);
@@ -106,15 +124,16 @@ $(".row").on("blur", "input", function() {
 $(".saveBtn").on("click", function () {
     //if we click the save button, grab the text from the same row
     var taskSave = ($(this).siblings()[1].textContent.trim());
+    console.log($(this).siblings())
     console.log(taskSave);
 
     var idSave = ($(this).siblings()[0].id);
-    console.log(idSave);
+    // console.log(idSave);
 
     $.each(tasks, function (key, array) {
         console.log(key);
         if (key == idSave) {
-            array.push(taskSave)
+            array.splice(0, 99, taskSave)
             console.log(tasks);
         }        
 });
@@ -122,6 +141,6 @@ $(".saveBtn").on("click", function () {
 
 })
 
-
+loadTasks();
 
 dateCheck();  
