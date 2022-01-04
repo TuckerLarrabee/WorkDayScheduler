@@ -73,12 +73,13 @@ var loadTasks = function () {
 }
 
     // For loop through all object properties (9-17)
-for (var i = 0; i < tasks.length; i++) {
+    // $.each ???
+    for (var i = 0; i < tasks.length; i++) {
         //  store the object properties value in a variable
         tasksObjectValue = (Object.values(tasks[i]))
         console.log(tasksObjectValue)
 
-        //store the object property name in a variable
+        //store the object property name (9-17) in a variable
         var tasksPropertyName = (Object.getOwnPropertyNames(tasks))
         console.log(tasksPropertyName)
 
