@@ -10,13 +10,13 @@ var tasks = {
     17: [],
 }
 
-var allSpan = $("span");
-console.log(allSpan)
-// loop through all span elements and grab their Ids which corresponds to the time
-for(var i = 0; i<allSpan.length; i++) {
-    var testingTwo = allSpan[i].siblings();
-            console.log(testingTwo);
-}
+// var allSpan = $("span");
+// console.log(allSpan)
+// // loop through all span elements and grab their Ids which corresponds to the time
+// for(var i = 0; i<allSpan.length; i++) {
+//     var testingTwo = allSpan[i].siblings();
+//             console.log(testingTwo);
+// }
 
 var textBlock = $(".description");
 
