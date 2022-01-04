@@ -51,8 +51,8 @@ var loadTasks = function () {
     tasks = JSON.parse(localStorage.getItem("tasks"))
     console.log(tasks);
 
-    taskValue = (Object.values(tasks))
-        console.log(taskValue)
+    // taskValue = (Object.values(tasks))
+    //     console.log(taskValue)
 
    
 
@@ -68,34 +68,35 @@ var loadTasks = function () {
             16: [],
             17: [],
         }
-        localStorage.setItem("tasks", (tasks));
+        localStorage.setItem("tasks", JSON.stringify(tasks));
     } 
+}
 
-    // For loop through all object properties (9-17)
-for (var i = 0; i < tasks.length; i++) {
-        //  if the tasks object has a value in any of the properties (9-17)
-        tasksObjectValue = (Object.values(tasks[i]))
-        console.log(tasksObjectValue)
-        if (tasksObjectValue) {
-            // create jQuery object of all span elements
-            var allSpan = $("span");
-            console.log(allSpan)
-            // loop through all span elements and grab their Ids which corresponds to the time
-            for(var i = 0; i<allSpan.length; i++) {
-                //object.getOwnPropertyNames will retrieve the property (9-17) from the tasks object
-            var tasksPropertyName = (Object.getOwnPropertyNames(tasks))
-            console.log(Object.getOwnPropertyNames(tasksPropertyName))
-            var testingTwo = allSpan[i].id;
-            console.log(testingTwo);
-            // if the tasks.property matches to the span id, insert tasksObjectValue into sibling textarea
-            if (tasksPropertyName == testingTwo) {
-                //insert tasksObjectValue into allSpan[i].sibling 
-                allSpan[i].siblings()
-            }
-        }
-}
-}
-}
+//     // For loop through all object properties (9-17)
+// for (var i = 0; i < tasks.length; i++) {
+//         //  if the tasks object has a value in any of the properties (9-17)
+//         tasksObjectValue = (Object.values(tasks[i]))
+//         console.log(tasksObjectValue)
+//         if (tasksObjectValue) {
+//             // create jQuery object of all span elements
+//             var allSpan = $("span");
+//             console.log(allSpan)
+//             // loop through all span elements and grab their Ids which corresponds to the time
+//             for(var i = 0; i<allSpan.length; i++) {
+//                 //object.getOwnPropertyNames will retrieve the property (9-17) from the tasks object
+//             var tasksPropertyName = (Object.getOwnPropertyNames(tasks))
+//             console.log(Object.getOwnPropertyNames(tasksPropertyName))
+//             var testingTwo = allSpan[i].id;
+//             console.log(testingTwo);
+//             // if the tasks.property matches to the span id, insert tasksObjectValue into sibling textarea
+//             if (tasksPropertyName == testingTwo) {
+//                 //insert tasksObjectValue into allSpan[i].sibling 
+//                 allSpan[i].siblings()
+//             }
+//         }
+// }
+// }
+// }
     
 
 
