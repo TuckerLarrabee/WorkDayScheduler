@@ -10,15 +10,13 @@ var tasks = {
     17: [],
 }
 
-console.log(Object.getOwnPropertyNames(tasks))
-    //  if the tasks object has a value in any of the properties (9-17)
-    // tasksObjectValue = (Object.values(tasks))
-    // console.log(tasksObjectValue)
-
-// console.log(Object.getOwnPropertyNames(tasks))
-
-// var mapOne = new Map();
-
+var allSpan = $("span");
+console.log(allSpan)
+// loop through all span elements and grab their Ids which corresponds to the time
+for(var i = 0; i<allSpan.length; i++) {
+    var testingTwo = allSpan[i].siblings();
+            console.log(testingTwo);
+}
 
 var textBlock = $(".description");
 
@@ -85,10 +83,15 @@ for (var i = 0; i < tasks.length; i++) {
             // loop through all span elements and grab their Ids which corresponds to the time
             for(var i = 0; i<allSpan.length; i++) {
                 //object.getOwnPropertyNames will retrieve the property (9-17) from the tasks object
-            console.log(Object.getOwnPropertyNames(tasks[i]))
+            var tasksPropertyName = (Object.getOwnPropertyNames(tasks))
+            console.log(Object.getOwnPropertyNames(tasksPropertyName))
             var testingTwo = allSpan[i].id;
             console.log(testingTwo);
             // if the tasks.property matches to the span id, insert tasksObjectValue into sibling textarea
+            if (tasksPropertyName == testingTwo) {
+                //insert tasksObjectValue into allSpan[i].sibling 
+                allSpan[i].siblings()
+            }
         }
 }
 }
