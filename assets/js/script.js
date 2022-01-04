@@ -72,39 +72,33 @@ var loadTasks = function () {
     } 
 }
 
-//     // For loop through all object properties (9-17)
-// for (var i = 0; i < tasks.length; i++) {
-//         //  if the tasks object has a value in any of the properties (9-17)
-//         tasksObjectValue = (Object.values(tasks[i]))
-//         console.log(tasksObjectValue)
-//         if (tasksObjectValue) {
-//             // create jQuery object of all span elements
-//             var allSpan = $("span");
-//             console.log(allSpan)
-//             // loop through all span elements and grab their Ids which corresponds to the time
-//             for(var i = 0; i<allSpan.length; i++) {
-//                 //object.getOwnPropertyNames will retrieve the property (9-17) from the tasks object
-//             var tasksPropertyName = (Object.getOwnPropertyNames(tasks))
-//             console.log(Object.getOwnPropertyNames(tasksPropertyName))
-//             var testingTwo = allSpan[i].id;
-//             console.log(testingTwo);
-//             // if the tasks.property matches to the span id, insert tasksObjectValue into sibling textarea
-//             if (tasksPropertyName == testingTwo) {
-//                 //insert tasksObjectValue into allSpan[i].sibling 
-//                 allSpan[i].siblings()
-//             }
-//         }
-// }
-// }
-// }
-    
+    // For loop through all object properties (9-17)
+for (var i = 0; i < tasks.length; i++) {
+        //  store the object properties value in a variable
+        tasksObjectValue = (Object.values(tasks[i]))
+        console.log(tasksObjectValue)
 
+        //store the object property name in a variable
+        var tasksPropertyName = (Object.getOwnPropertyNames(tasks))
+        console.log(tasksPropertyName)
 
-
-    // var taskArea = $("<textarea>").addClass("col-9").addClass("description").text();
-    // console.log(taskArea)
-
-
+        //  if the tasks object has a value in any of the properties (9-17)
+        if (tasksObjectValue) {
+            // create jQuery object of all span elements
+            var allSpan = $("span");
+            console.log(allSpan)
+            // loop through all span elements and grab their Ids which corresponds to the time
+            for(var i = 0; i<allSpan.length; i++) {
+                var spanId = allSpan[i].id;
+                console.log(spanId);
+                    // if the tasks.property matches to the span id, insert tasksObjectValue into sibling textarea
+                    if (tasksPropertyName == spanId) {
+                        //insert tasksObjectValue into allSpan[i].sibling 
+                        allSpan[i].siblings().text = tasksObjectValue
+                }
+        }
+}
+}
 
 
 
@@ -116,6 +110,9 @@ var loadTasks = function () {
 //     });
 //     });
 // };
+    
+    // var taskArea = $("<textarea>").addClass("col-9").addClass("description").text();
+    // console.log(taskArea)
 
 
 var saveTasks = function () {
