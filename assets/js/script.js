@@ -10,6 +10,8 @@ var tasks = {
     17: [],
 }
 
+// for (var i = 0; i < 10; i++) {
+
 // var mapOne = new Map();
 
 
@@ -58,10 +60,47 @@ var loadTasks = function () {
             15: [],
             16: [],
             17: [],
+        }
+        localStorage.setItem("tasks", (tasks));
+    } 
+
+    //For loop through all object properties (9-17)
+    for (var i = 0; i < tasks.length; i ++) {
+         // if the tasks object has a value in any of the properties (9-17)
+        if (tasks.key) {
+            //grab the property value from tasks object
+
+            //find all span elements by their id (9-17)
+                var testing = $("span");
+                console.log(testing)
+                for(var i = 0; i<testing.length; i++) {
+
+                var testingTwo = testing[i].id;
+                console.log(testingTwo);
+                //if the tasks.property matches to the span id, insert tasks.property into sibling textarea 
+        }
 }
-localStorage.setItem("tasks", (tasks));
+
+    }
 }
-}
+
+
+    // var taskArea = $("<textarea>").addClass("col-9").addClass("description").text();
+    // console.log(taskArea)
+
+
+
+
+
+// $.each(tasks, function (list, arr) {
+//     // console.log(list, arr);
+//     // then loop over sub-array
+//     arr.forEach(function (task) {
+//         createTask(task.text, task.date, list);
+//     });
+//     });
+// };
+
 
 var saveTasks = function () {
     localStorage.setItem("tasks", JSON.stringify(tasks));
