@@ -1,14 +1,14 @@
-var tasks = {
-    9: [],
-    10: [],
-    11: [],
-    12: [],
-    13: [],
-    14: [],
-    15: [],
-    16: [],
-    17: [],
-}
+var tasks = [
+    {"9": ""},
+    {"10": ""},
+    {"11": ""},
+    {"12": ""},
+    {"13": ""},
+    {"14": ""},
+    {"15": ""},
+    {"16": ""},
+    {"17": ""},
+]
 
 // var allSpan = $("span");
 // console.log(allSpan)
@@ -57,31 +57,46 @@ var loadTasks = function () {
    
 
     if (!tasks) {
-        tasks = {
-            9: [],
-            10: [],
-            11: [],
-            12: [],
-            13: [],
-            14: [],
-            15: [],
-            16: [],
-            17: [],
-        }
+        var tasks = [
+            {"9": ""},
+            {"10": ""},
+            {"11": ""},
+            {"12": ""},
+            {"13": ""},
+            {"14": ""},
+            {"15": ""},
+            {"16": ""},
+            {"17": ""},
+        ]
         localStorage.setItem("tasks", JSON.stringify(tasks));
+        console.log(tasks)
     } 
 }
 
     // For loop through all object properties (9-17)
     // $.each ???
     for (var i = 0; i < tasks.length; i++) {
-        //  store the object properties value in a variable
-        tasksObjectValue = (Object.values(tasks[i]))
-        console.log(tasksObjectValue)
 
         //store the object property name (9-17) in a variable
-        var tasksPropertyName = (Object.getOwnPropertyNames(tasks))
+        var tasksPropertyName = (Object.getOwnPropertyNames(tasks[i]))
         console.log(tasksPropertyName)
+
+        //  store the object properties value in a variable
+        tasksObjectArray = JSON.parse(localStorage["tasks"])
+        console.log(tasksObjectArray)
+        tasksObjectValue = (Object.values(tasksObjectArray[i]))
+        console.log(tasksObjectValue)
+
+        var newObject = {
+            [i+9]: tasksObjectValue[i]
+        };
+        console.log(newObject)
+
+        // if (tasksObjectArray[i]) {
+        //     console.log(tasksObjectArray[i])
+        //     console.log(Object.values(tasksObjectArray[i]))
+        // }
+        
 
         //  if the tasks object has a value in any of the properties (9-17)
         if (tasksObjectValue) {
@@ -94,8 +109,10 @@ var loadTasks = function () {
                 console.log(spanId);
                     // if the tasks.property matches to the span id, insert tasksObjectValue into sibling textarea
                     if (tasksPropertyName == spanId) {
+                        var textTest = ($(allSpan[i]).siblings()[0])
                         //insert tasksObjectValue into allSpan[i].sibling 
-                        allSpan[i].siblings().text = tasksObjectValue
+                        textTest.textContent = tasksObjectValue
+                        console.log(textTest)
                 }
         }
 }
@@ -136,14 +153,14 @@ $(".row").on("blur", "input", function() {
     
     //recreate textarea element
     var taskArea = $("<textarea>").addClass("col-9").addClass("description").text(text);
-    console.log(taskArea);
-    console.log(text);
+    // console.log(taskArea);
+    // console.log(text);
 
     //replace input with textarea element
     $(this).replaceWith(taskArea);
 
     var timeReCheck = ($(taskArea).siblings()[0].textContent.trim());
-    console.log(timeReCheck)
+    // console.log(timeReCheck)
     if (timeReCheck.includes("PM")) {
 
         var newDateReCheck = timeReCheck.slice(0, -2)
@@ -161,7 +178,7 @@ $(".row").on("blur", "input", function() {
     var newDateReCheck = timeReCheck.slice(0, -2)
     
     var check = parseInt(newDateReCheck);
-    console.log(check);
+    // console.log(check);
     
     if (check < currentHour) {
         $(taskArea).addClass("past");
@@ -177,19 +194,31 @@ $(".row").on("blur", "input", function() {
 $(".saveBtn").on("click", function () {
     //if we click the save button, grab the text from the same row
     var taskSave = ($(this).siblings()[1].textContent.trim());
-    console.log($(this).siblings())
-    console.log(taskSave);
+    // console.log($(this).siblings())
+    // console.log(taskSave);
 
     var idSave = ($(this).siblings()[0].id);
     // console.log(idSave);
 
-    $.each(tasks, function (key, array) {
-        console.log(key);
-        if (key == idSave) {
-            array.splice(0, 99, taskSave)
-            console.log(tasks);
-        }        
-});
+    for (var i = 0; i < tasks.length; i++) {
+        var arrayKey = (Object.getOwnPropertyNames(tasks[i]))
+        // console.log(arrayKey)
+        if (arrayKey == idSave) {
+            var arrayKey = (Object.getOwnPropertyNames(tasks[i]))
+            tasks[i] = {[i+9]: taskSave}
+        //     var test = Object.assign(+((tasks[i]+"9")), taskSave)
+        //     console.log(test)
+            // tasks[i].push(taskSave)
+        }
+
+    }
+//     $.each(tasks, function (key, array) {
+//         console.log(key);
+//         if (key == idSave) {
+//             array.splice(0, 99, taskSave)
+//             console.log(tasks);
+//         }        
+// });
     saveTasks();
 
 })
